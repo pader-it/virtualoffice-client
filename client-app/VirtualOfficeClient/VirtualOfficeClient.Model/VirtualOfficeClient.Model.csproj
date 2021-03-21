@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="VirtualOffice.RestApiClient">
+      <HintPath>..\..\..\api-client-lib\src\IO.Swagger\bin\Debug\VirtualOffice.RestApiClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
