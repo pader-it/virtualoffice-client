@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using VirtualOffice.RestApiClient.Api;
 using VirtualOffice.RestApiClient.Client;
+using VirtualOfficeClient.Model.Auth.Sessions;
 
 namespace VirtualOfficeClient.Model.Auth
 {
@@ -27,7 +28,8 @@ namespace VirtualOfficeClient.Model.Auth
                 if(response.StatusCode == 200)
                 {
                     var token = ((JObject)response.Data).Value<string>("token");
-                    //TODO: Do something with the token to store it persistently
+                    var session = SessionFactory.BuildSession(username, token);
+                    AuthContext.Instance.RegisterActiveSession(session);
                 }
 
                 return response.StatusCode;

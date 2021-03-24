@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using VirtualOfficeClient.Model.Auth;
+using VirtualOfficeClient.Model.Offices;
+using VirtualOfficeClient.ViewModel.Offices;
 
 namespace VirtualOfficeClient.ViewModel.Auth
 {
@@ -46,6 +48,18 @@ namespace VirtualOfficeClient.ViewModel.Auth
             this.StatusLabel = "Performing Login Operation...";
             this._lastResponseCode = await LoginHelper.PerformLogin(this.Username, this.Password);
             this.UpdateStatusLabel();
+
+            if(this._lastResponseCode == 200)
+            {
+                HandleLoginSuccess();
+            }
+        }
+
+        private void HandleLoginSuccess()
+        {
+            var userContext = new UserContext();
+            var mainDataContext = new MainDataContext(userContext);
+            //TODO: Open new Window
         }
 
         private void UpdateStatusLabel()
