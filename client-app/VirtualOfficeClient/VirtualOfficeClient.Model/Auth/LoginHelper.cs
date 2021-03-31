@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using VirtualOffice.RestApiClient.Api;
 using VirtualOffice.RestApiClient.Client;
+using VirtualOfficeClient.Model.Apis;
 using VirtualOfficeClient.Model.Auth.Sessions;
 
 namespace VirtualOfficeClient.Model.Auth
@@ -12,8 +13,7 @@ namespace VirtualOfficeClient.Model.Auth
         
         static LoginHelper()
         {
-            _userApi = new UserManagementApi();
-            _userApi.Configuration.BasePath = "http://localhost:8080/";
+            _userApi = ApiProvider.UserApi;
         }
 
         public static async Task<int> PerformLogin(string username, string password)
@@ -28,7 +28,7 @@ namespace VirtualOfficeClient.Model.Auth
                 if(response.StatusCode == 200)
                 {
                     var token = ((JObject)response.Data).Value<string>("token");
-                    var session = SessionFactory.BuildSession(username, token);
+                    var session = SessionFactory.BuildSession(token, username);
                     AuthContext.Instance.RegisterActiveSession(session);
                 }
 

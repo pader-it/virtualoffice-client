@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using VirtualOfficeClient.View.WindowFactory;
 using VirtualOfficeClient.ViewModel.Auth;
 
 
@@ -14,7 +15,7 @@ namespace VirtualOfficeClient.View
         public LoginWindow()
         {
             InitializeComponent();
-            this.viewModel = new LoginDataContext();
+            this.viewModel = new LoginDataContext(new MainWindowBuilder(this));
             this.viewModel.StatusLabel = "Not logged in.";
             this.DataContext = this.viewModel;
         }

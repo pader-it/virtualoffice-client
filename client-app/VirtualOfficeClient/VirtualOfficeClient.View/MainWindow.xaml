@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VirtualOfficeClient.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="390">
     <Grid>
-        
+        <TextBox HorizontalAlignment="Left" Margin="75,65,0,0" ToolTip="Enter Office Id Here"  Text="{Binding OfficeIdInputString}" TextWrapping="NoWrap" VerticalAlignment="Top" Width="92" Height="20"/>
+        <Button Command="{Binding EnterOfficeCommand}" CommandParameter="{Binding OfficeIdInputString}" Content="Enter Office" HorizontalAlignment="Left" Margin="194,65,0,0" VerticalAlignment="Top" />
+        <Button Command="{Binding LeaveOfficeCommand}" Content="Leave Office" HorizontalAlignment="Left" Margin="279,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="Office Id" Margin="5,62,320,341"/>
+        <Label Content="Current Office: " HorizontalAlignment="Left" Margin="75,118,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Path=CurrentOfficeName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.541"/>
+
     </Grid>
 </Window>

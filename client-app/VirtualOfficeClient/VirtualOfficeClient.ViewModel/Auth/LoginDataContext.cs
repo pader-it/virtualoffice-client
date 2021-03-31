@@ -3,6 +3,7 @@ using System.Windows.Input;
 using VirtualOfficeClient.Model.Auth;
 using VirtualOfficeClient.Model.Offices;
 using VirtualOfficeClient.ViewModel.Offices;
+using VirtualOfficeClient.ViewModel.Windows;
 
 namespace VirtualOfficeClient.ViewModel.Auth
 {
@@ -43,6 +44,14 @@ namespace VirtualOfficeClient.ViewModel.Auth
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        private readonly INextWindowBuilder _windowBuilder;
+
+        public LoginDataContext(INextWindowBuilder windowBuilder)
+        {
+            _windowBuilder = windowBuilder;
+        }
+
         public async void DoLogin()
         {
             this.StatusLabel = "Performing Login Operation...";
@@ -59,7 +68,7 @@ namespace VirtualOfficeClient.ViewModel.Auth
         {
             var userContext = new UserContext();
             var mainDataContext = new MainDataContext(userContext);
-            //TODO: Open new Window
+            this._windowBuilder.ShowNextWindow(mainDataContext);
         }
 
         private void UpdateStatusLabel()
